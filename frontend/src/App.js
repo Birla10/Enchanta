@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
+
 import Login from './components/Login';
 import Reviews from './components/Reviews';
 import Comic from './components/Comic';
 import MyComics from './components/MyComics';
+import NavBar from './components/NavBar';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -36,7 +38,9 @@ function App() {
 
   return (
     <Router>
-      <div style={{ padding: '20px' }}>
+      {token && <NavBar logout={logout} />}
+      <div className="container">
+        <div style={{ padding: '20px' }}>
         {token && (
           <nav style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
             <Link to="/reviews">Home</Link>

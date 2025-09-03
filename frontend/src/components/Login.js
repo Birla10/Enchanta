@@ -14,7 +14,7 @@ export default function Login({ onLogin }) {
   };
 
   return (
-    <div>
+    <div className="auth-container">
       <h2>{isRegister ? 'Register' : 'Login'}</h2>
       <input placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
       <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
