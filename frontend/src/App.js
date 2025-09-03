@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
+
 import Login from './components/Login';
 import Reviews from './components/Reviews';
 import Comic from './components/Comic';
@@ -39,6 +41,14 @@ function App() {
     <Router>
       {token && <NavBar logout={logout} />}
       <div className="container">
+        <div style={{ padding: '20px' }}>
+        {token && (
+          <nav style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
+            <Link to="/reviews">Home</Link>
+            <Link to="/my-comics">My Comics</Link>
+            <button onClick={logout}>Logout</button>
+          </nav>
+        )}
         <Routes>
           <Route path="/" element={token ? <Navigate to="/reviews" /> : <Login onLogin={handleLogin} />} />
           <Route path="/reviews" element={token ? <Reviews token={token} /> : <Navigate to="/" />} />
