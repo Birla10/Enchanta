@@ -6,4 +6,6 @@ pyjwt
 bcrypt
 requests
 openai
+email-validator
 python-dotenv
+bcrypt

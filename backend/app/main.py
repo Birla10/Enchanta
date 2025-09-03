@@ -1,16 +1,30 @@
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from .db import users_collection
-from .auth import double_hash, verify_password, create_token, decode_token
-from .models.user import UserIn
-from .routers import reviews, comic
+from db import users_collection
+from auth import double_hash, verify_password, create_token, decode_token
+from models.user import UserIn
+import routers.reviews as reviews
+from routers import reviews, comic
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-app.include_router(reviews.router)
 app.include_router(comic.router)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  
+    allow_credentials=True,
+    allow_methods=["*"], 
+    allow_headers=["*"],  
+)
 
 security = HTTPBearer()
 
+def get_current_user(creds: HTTPAuthorizationCredentials = Depends(security)):
+    token = creds.credentials
+    return decode_token(token)
+
+user: dict = Depends(get_current_user)
 
 @app.post('/register')
 async def register(user: UserIn):
@@ -30,6 +44,9 @@ async def login(user: UserIn):
     token = create_token({'sub': str(db_user['_id']), 'email': user.email})
     return {'access_token': token}
 
+@app.get('/reviews')
+async def reviews_endpoint(merchant: str, place: str, user: dict = Depends(get_current_user)):
+    return await reviews.get_reviews(merchant, place)
 
 @app.get('/me')
 async def me(creds: HTTPAuthorizationCredentials = Depends(security)):
