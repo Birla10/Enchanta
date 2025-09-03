@@ -33,9 +33,14 @@ export default function Reviews({ token }) {
       <input placeholder="Merchant" value={merchant} onChange={e => setMerchant(e.target.value)} />
       <input placeholder="Place" value={place} onChange={e => setPlace(e.target.value)} />
       <button onClick={fetchReviews}>Search</button>
-      <ul>
+      <ul className="reviews-list">
         {reviews.map((r, i) => (
-          <li key={i} onClick={() => toggle(r.text)} style={{ cursor: 'pointer', background: selected.includes(r.text) ? '#c8e6c9' : 'white' }}>
+          <li
+            key={i}
+            onClick={() => toggle(r.text)}
+            className={selected.includes(r.text) ? 'selected' : ''}
+            style={{ cursor: 'pointer' }}
+          >
             <strong>{r.author_name}</strong>: {r.text}
           </li>
         ))}
