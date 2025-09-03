@@ -29,6 +29,17 @@ export default function MyComics({ token }) {
           );
         })}
       </div>
+      {comics.map((c, i) => {
+        const src = c.image.startsWith('http') ? c.image : `data:image/png;base64,${c.image}`;
+        return (
+          <img
+            key={c.id || i}
+            src={src}
+            alt={`comic-${i}`}
+            style={{ maxWidth: '100%', marginBottom: '10px' }}
+          />
+        );
+      })}
     </div>
   );
 }
