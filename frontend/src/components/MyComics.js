@@ -44,8 +44,6 @@ export default function MyComics({ token }) {
               >
                 ⬇️
               </button>
-            <div className="comic-card" key={c.id || i}>
-              <img src={src} alt={`comic-${i}`} style={{ width: '100%' }} />
             </div>
           );
         })}
@@ -55,18 +53,6 @@ export default function MyComics({ token }) {
           <img src={selected} alt="enlarged-comic" />
         </div>
       )}
-
-      {comics.map((c, i) => {
-        const src = c.image.startsWith('http') ? c.image : `data:image/png;base64,${c.image}`;
-        return (
-          <img
-            key={c.id || i}
-            src={src}
-            alt={`comic-${i}`}
-            style={{ maxWidth: '100%', marginBottom: '10px' }}
-          />
-        );
-      })}
 
     </div>
   );
