@@ -1,9 +1,11 @@
 import os
 import openai
+from datetime import datetime
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from auth import decode_token
-from schemas import ConversationRequest, ComicRequest
+from schemas import ConversationRequest, ComicRequest, ComicOut
+from db import comics_collection
 
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
@@ -57,8 +59,25 @@ async def comic(data: ComicRequest, user: dict = Depends(get_current_user)):
 
     # New SDK usually returns a URL
     result = image.data[0]
+    img_data = result.b64_json if hasattr(result, "b64_json") else result.url
+
+    await comics_collection.insert_one({
+        "user_id": user.get("sub"),
+        "image": img_data,
+        "prompt": prompt,
+        "created_at": datetime.utcnow(),
+    })
 
     if hasattr(result, "b64_json"):  # only in older API format
         return {"image": result.b64_json, "prompt": prompt}
     else:
         return {"image_url": result.url, "prompt": prompt}
+
+
+@router.get("/comics", response_model=list[ComicOut])
+async def get_comics(user: dict = Depends(get_current_user)):
+    cursor = comics_collection.find({"user_id": user.get("sub")}).sort("created_at", -1)
+    comics = []
+    async for doc in cursor:
+        comics.append({"id": str(doc.get("_id")), "image": doc.get("image"), "prompt": doc.get("prompt", "")})
+    return comics
