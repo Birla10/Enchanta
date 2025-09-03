@@ -20,7 +20,8 @@ Environment variables:
 - `OPENAI_API_KEY` – OpenAI API key
 
 ## Frontend
-React application with a colorful UI allowing login, review selection and comic display.
+React application with a colorful UI allowing login, review selection and comic display. A navigation bar provides quick
+access to Home, My Comics and Logout, and users are automatically logged out after five minutes of inactivity.
 
 ### Running
 ```

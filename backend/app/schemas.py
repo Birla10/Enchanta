@@ -14,3 +14,9 @@ class ConversationRequest(BaseModel):
 
 class ComicRequest(BaseModel):
     conversation: str
+
+
+class ComicOut(BaseModel):
+    id: str
+    image: str
+    prompt: str
