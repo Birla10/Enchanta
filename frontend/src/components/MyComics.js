@@ -4,17 +4,26 @@ import axios from 'axios';
 export default function MyComics({ token }) {
   const [comics, setComics] = useState([]);
   const [selected, setSelected] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchComics = async () => {
-      const resp = await axios.get('/ai/comics', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setComics(resp.data);
+      setLoading(true);
+      try {
+        const resp = await axios.get('/ai/comics', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setComics(resp.data);
+      } catch (e) {
+        setComics([]);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchComics();
   }, [token]);
 
+  if (loading) return <div>Fetching your Comics...</div>;
   if (comics.length === 0) return <div>No comics generated yet.</div>;
 
   const handleDownload = (src, i) => {

@@ -23,13 +23,13 @@ async def conversation(data: ConversationRequest, user: dict = Depends(get_curre
     if not openai.api_key:
         raise HTTPException(status_code=500, detail="OpenAI API key not configured")
     prompt = (
-        "These are 2 reviews from 2 different people. Mix both reviews and convert this into a cute conversation between 2 people talking. Make the content more fun."
+        "These are 2 reviews from 2 different people. Mix both reviews and convert this into a cute conversation with proper start and ending. Make the content more fun."
         + "\n".join(data.reviews)
     )
     resp = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=200,
+        max_tokens=170,
     )
     text = resp.choices[0].message.content.strip()
     print("Conversation:", text)
@@ -42,10 +42,11 @@ async def comic(data: ComicRequest, user: dict = Depends(get_current_user)):
         raise HTTPException(status_code=500, detail="OpenAI API key not configured")
 
     prompt = (
-        f"Create a high-quality, 3D comic strip of this conversation. "
-        f"Make it visually engaging, colorful, and marketing-friendly. "
-        f"Focus on expressive characters, natural poses, and cozy cafe backgrounds. "
+        f"Create a high-quality, 3D cartoon comic strip of this conversation. "
+        f"Make it visually engaging with appropriate backgrounds and foregrounds. "
+        f"Focus on expressive characters, natural poses"
         f"Keep text minimal (speech bubbles only) and legible. "
+        f"Create a complete image without stripping any side "
         f"Conversation: {data.conversation}"
     )
 
