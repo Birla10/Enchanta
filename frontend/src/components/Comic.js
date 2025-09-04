@@ -38,6 +38,8 @@ export default function Comic({ token }) {
 
   const src = image.startsWith('http') ? image : `data:image/png;base64,${image}`;
 
+  const src = image.startsWith('http') ? image : `data:image/png;base64,${image}`;
+
   return (
     <div>
       <h2>Comic Strip</h2>

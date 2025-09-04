@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 import Login from './components/Login';
 import Reviews from './components/Reviews';
 import Comic from './components/Comic';
@@ -19,9 +19,9 @@ function App() {
 
   useEffect(() => {
     if (!token) return;
-    let timer;
+    let timer = null;
     const reset = () => {
-      clearTimeout(timer);
+      if (timer) clearTimeout(timer);
       timer = setTimeout(() => {
         logout();
       }, 5 * 60 * 1000);
@@ -30,7 +30,7 @@ function App() {
     events.forEach(e => window.addEventListener(e, reset));
     reset();
     return () => {
-      clearTimeout(timer);
+      if (timer) clearTimeout(timer);
       events.forEach(e => window.removeEventListener(e, reset));
     };
   }, [token]);
@@ -39,12 +39,14 @@ function App() {
     <Router>
       {token && <NavBar logout={logout} />}
       <div className="container">
-        <Routes>
-          <Route path="/" element={token ? <Navigate to="/reviews" /> : <Login onLogin={handleLogin} />} />
-          <Route path="/reviews" element={token ? <Reviews token={token} /> : <Navigate to="/" />} />
-          <Route path="/comic" element={token ? <Comic token={token} /> : <Navigate to="/" />} />
-          <Route path="/my-comics" element={token ? <MyComics token={token} /> : <Navigate to="/" />} />
-        </Routes>
+        <div style={{ padding: '20px' }}>
+          <Routes>
+            <Route path="/" element={token ? <Navigate to="/reviews" /> : <Login onLogin={handleLogin} />} />
+            <Route path="/reviews" element={token ? <Reviews token={token} /> : <Navigate to="/" />} />
+            <Route path="/comic" element={token ? <Comic token={token} /> : <Navigate to="/" />} />
+            <Route path="/my-comics" element={token ? <MyComics token={token} /> : <Navigate to="/" />} />
+          </Routes>
+        </div>
       </div>
     </Router>
   );
