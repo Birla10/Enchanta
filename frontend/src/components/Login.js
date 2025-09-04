@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isRegister, setIsRegister] = useState(false);
+  const navigate = useNavigate();
 
   const submit = async () => {
     const url = isRegister ? '/register' : '/login';
     const res = await axios.post(url, { email, password });
-    if (!isRegister) onLogin(res.data.access_token);
-    else setIsRegister(false);
+    if (!isRegister) {
+      onLogin(res.data.access_token);
+      navigate('/reviews');
+    } else {
+      setIsRegister(false);
+    }
   };
 
   return (

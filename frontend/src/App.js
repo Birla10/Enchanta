@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import Reviews from './components/Reviews';
 import Comic from './components/Comic';
 import MyComics from './components/MyComics';
 import NavBar from './components/NavBar';
+import LandingPage from './components/LandingPage';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -37,16 +38,27 @@ function App() {
 
   return (
     <Router>
-      {token && <NavBar logout={logout} />}
+      <NavBar token={token} logout={logout} />
       <div className="container">
-        <div style={{ padding: '20px' }}>
-          <Routes>
-            <Route path="/" element={token ? <Navigate to="/reviews" /> : <Login onLogin={handleLogin} />} />
-            <Route path="/reviews" element={token ? <Reviews token={token} /> : <Navigate to="/" />} />
-            <Route path="/comic" element={token ? <Comic token={token} /> : <Navigate to="/" />} />
-            <Route path="/my-comics" element={token ? <MyComics token={token} /> : <Navigate to="/" />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<LandingPage token={token} />} />
+          <Route
+            path="/login"
+            element={token ? <Navigate to="/reviews" /> : <Login onLogin={handleLogin} />}
+          />
+          <Route
+            path="/reviews"
+            element={token ? <Reviews token={token} /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/comic"
+            element={token ? <Comic token={token} /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/my-comics"
+            element={token ? <MyComics token={token} /> : <Navigate to="/login" />}
+          />
+        </Routes>
       </div>
     </Router>
   );

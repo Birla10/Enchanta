@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+  <defs>
+    <radialGradient id="skin3" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffe0b2"/>
+      <stop offset="100%" stop-color="#ffb74d"/>
+    </radialGradient>
+    <linearGradient id="shirt2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#aed581"/>
+      <stop offset="100%" stop-color="#689f38"/>
+    </linearGradient>
+    <linearGradient id="pants2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#90caf9"/>
+      <stop offset="100%" stop-color="#1e88e5"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="50" r="30" fill="url(#skin3)"/>
+  <rect x="40" y="80" width="40" height="80" rx="20" fill="url(#shirt2)"/>
+  <rect x="40" y="160" width="15" height="40" rx="8" fill="url(#pants2)"/>
+  <rect x="65" y="160" width="15" height="40" rx="8" fill="url(#pants2)"/>
+  <circle cx="150" cy="130" r="35" fill="#ffd54f" stroke="#fbc02d" stroke-width="6"/>
+  <text x="150" y="140" font-size="30" text-anchor="middle" fill="#f57f17">$</text>
+  <rect x="120" y="160" width="15" height="30" fill="#66bb6a"/>
+  <rect x="140" y="150" width="15" height="40" fill="#66bb6a"/>
+  <rect x="160" y="135" width="15" height="55" fill="#66bb6a"/>
+</svg>
