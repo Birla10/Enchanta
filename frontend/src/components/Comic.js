@@ -28,7 +28,15 @@ export default function Comic({ token }) {
     a.click();
   };
 
-  if (!image) return <div>Generating comic...</div>;
+  if (!image)
+    return (
+      <div className="loading-container">
+        <div className="loader" />
+        <p className="loading-text">Generating your comic...</p>
+      </div>
+    );
+
+  const src = image.startsWith('http') ? image : `data:image/png;base64,${image}`;
 
   const src = image.startsWith('http') ? image : `data:image/png;base64,${image}`;
 

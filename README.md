@@ -21,9 +21,9 @@ Environment variables:
 
 
 ## Frontend
-React application with a dark, responsive UI allowing login, review selection and comic display. A navigation bar with
-icons provides quick access to Home, My Comics and Logout, and users are automatically logged out after five minutes of inactivity.
-Generated comics appear as floating cards on the My Comics page, each offering a download button and tap-to-enlarge preview.
+React application with a dark, responsive UI allowing login, review selection and comic display. A navigation bar with icons provides quick access to Home, My Comics and Logout, and users are automatically logged out after five minutes of inactivity.
+Generated comics appear as floating cards on the My Comics page, each offering a download button and tap-to-enlarge preview. During comic generation, an animated spinner keeps users engaged while they wait.
+
 
 ### Running
 ```

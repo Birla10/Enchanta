@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
-
 import Login from './components/Login';
 import Reviews from './components/Reviews';
 import Comic from './components/Comic';

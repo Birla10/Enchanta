@@ -5,7 +5,6 @@ export default function MyComics({ token }) {
   const [comics, setComics] = useState([]);
   const [selected, setSelected] = useState(null);
 
-
   useEffect(() => {
     const fetchComics = async () => {
       const resp = await axios.get('/ai/comics', {
@@ -24,7 +23,7 @@ export default function MyComics({ token }) {
     link.download = `comic-${i}.png`;
     link.click();
   };
-  
+
   return (
     <div>
       <h2>My Comics</h2>
@@ -53,7 +52,6 @@ export default function MyComics({ token }) {
           <img src={selected} alt="enlarged-comic" />
         </div>
       )}
-
     </div>
   );
 }
