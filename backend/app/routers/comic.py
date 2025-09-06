@@ -29,7 +29,7 @@ async def conversation(data: ConversationRequest, user: dict = Depends(get_curre
     resp = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=170,
+        max_tokens=200,
     )
     text = resp.choices[0].message.content.strip()
     print("Conversation:", text)
@@ -46,15 +46,15 @@ async def comic(data: ComicRequest, user: dict = Depends(get_current_user)):
         f"Make it visually engaging with appropriate backgrounds and foregrounds. "
         f"Focus on expressive characters, natural poses"
         f"Keep text minimal (speech bubbles only) and legible. "
-        f"Create a complete image without stripping any side "
+        f"Create a complete image without stripping any side and maintaining consistency in characters. "
         f"Conversation: {data.conversation}"
     )
 
     image = openai.images.generate(
-        model="gpt-image-1",   # ✅ latest image model
+        model="gpt-image-1", 
         prompt=prompt,
         n=1,
-        size="1024x1024",
+        size="1080x1350",
         quality="high"
     )
 

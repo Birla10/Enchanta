@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../css/reviews.css';
 
 export default function Reviews({ token }) {
   const [merchant, setMerchant] = useState('');
@@ -28,7 +29,7 @@ export default function Reviews({ token }) {
   };
 
   return (
-    <div>
+    <div className='fetch-reviews'>
       <h2>Fetch Reviews</h2>
       <input placeholder="Merchant" value={merchant} onChange={e => setMerchant(e.target.value)} />
       <input placeholder="Place" value={place} onChange={e => setPlace(e.target.value)} />

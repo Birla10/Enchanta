@@ -1,18 +1,31 @@
 body {
-  margin: 0;
   font-family: 'Arial', sans-serif;
-  background: #f3e8ff;
+  background-color: #f3e8ff; /* fallback color while image loads */
   color: #1f2937;
+
+  /* background image setup */
+  background-image: url('../public/assets/background.png'); /* ✅ don't use ../public */
+  background-size: cover;      /* cover entire screen */
+  background-position: center; /* keep centered */
+  background-repeat: no-repeat; /* no tiling */
+  background-attachment: fixed; /* makes it stay fixed on scroll */
+
+  min-height: 100vh; /* make sure it always fills the viewport */
+  margin: 0;
 }
 
 button {
-  background-color: #8b5cf6;
+  background-color: #FE4E8F;
   color: #fff;
   padding: 10px 20px;
   border: none;
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.auth-container h2 {
+  color: white;
 }
 
 input, select {
@@ -29,18 +42,21 @@ input, select {
 }
 
 .navbar {
-  background-color: #8b5cf6;
+  background-color: transparent;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  padding: 3px 40px;
+  margin: 10px 10px 0px 10px;
+  border: 1.2px solid white;
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(27, 26, 26, 0.5);
 }
 
 .logo {
-  font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 3rem;
+  color: white;
+  font-family: 'Qurova';
 }
 
 .logo a {
@@ -55,14 +71,14 @@ input, select {
 
 .nav-links a,
 .nav-links button {
-  color: white;
-  text-decoration: none;
-  background: none;
+  background-color: #FE4E8F;
+  color: #fff;
+  padding: 12px 24px;
   border: none;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
+  border-radius: 8px;
   cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  text-decoration: none;
 }
 
 .nav-links a:hover,
@@ -70,13 +86,9 @@ input, select {
   color: #ffd54f;
 }
 
-.icon {
-  margin-right: 5px;
-}
-
 .auth-container {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 30px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 400px;

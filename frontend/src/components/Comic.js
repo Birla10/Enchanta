@@ -39,10 +39,9 @@ export default function Comic({ token }) {
   const src = image.startsWith('http') ? image : `data:image/png;base64,${image}`;
 
   return (
-    <div>
+    <div className='comic-container'>
       <h2>Comic Strip</h2>
       <img src={src} alt="comic" style={{ maxWidth: '100%' }} />
-      <p><em>Prompt sent: Create a 3d comic strip with the following conversation...</em></p>
       <button onClick={download}>Download</button>
     </div>
   );

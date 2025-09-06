@@ -12,14 +12,14 @@ export default function LandingPage({ token }) {
   return (
     <div className="landing-page">
       <div className="hero-text">
-        <h1>Grow Your Business with Effective Marketing</h1>
-        <p>Reach your target audience and drive sales with our innovative marketing solutions.</p>
+        <h1>
+          Grow Your Business with <br /> Effective Marketing
+        </h1>
+        <p>
+          Reach your target audience and drive sales <br/> with our innovative marketing
+          solutions.
+        </p>
         <button onClick={go}>Get Started</button>
-      </div>
-      <div className="hero-art">
-        <img src="/assets/target-character.svg" alt="target" className="hero-target" />
-        <img src="/assets/jump-character.svg" alt="jump" className="hero-jump" />
-        <img src="/assets/coin-character.svg" alt="coin" className="hero-coin" />
       </div>
     </div>
   );

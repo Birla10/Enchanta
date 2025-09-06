@@ -60,6 +60,7 @@ async def get_reviews(merchant: str, place: str):
     d_json = d.json()
     reviews_data = d_json.get("reviews", []) or []
 
+    print(reviews_data)
     # Map to your schema
     out = []
     for r in reviews_data[:20]:
