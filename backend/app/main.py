@@ -45,8 +45,8 @@ async def login(user: UserIn):
     return {'access_token': token}
 
 @app.get('/reviews')
-async def reviews_endpoint(merchant: str, place: str, user: dict = Depends(get_current_user)):
-    return await reviews.get_reviews(merchant, place)
+async def reviews_endpoint(merchant: str, place: str = '', source: str = 'google', user: dict = Depends(get_current_user)):
+    return await reviews.get_reviews(merchant, place, source)
 
 @app.get('/me')
 async def me(creds: HTTPAuthorizationCredentials = Depends(security)):

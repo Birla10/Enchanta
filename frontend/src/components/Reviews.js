@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import '../css/reviews.css';
 
 export default function Reviews({ token }) {
+  const [source, setSource] = useState('google');
   const [merchant, setMerchant] = useState('');
   const [place, setPlace] = useState('');
   const [reviews, setReviews] = useState([]);
@@ -11,7 +12,7 @@ export default function Reviews({ token }) {
   const navigate = useNavigate();
 
   const fetchReviews = async () => {
-    const res = await axios.get(`/reviews?merchant=${merchant}&place=${place}`, {
+    const res = await axios.get(`/reviews?source=${source}&merchant=${merchant}&place=${place}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     setReviews(res.data);
@@ -31,8 +32,20 @@ export default function Reviews({ token }) {
   return (
     <div className='fetch-reviews'>
       <h2>Fetch Reviews</h2>
-      <input placeholder="Merchant" value={merchant} onChange={e => setMerchant(e.target.value)} />
-      <input placeholder="Place" value={place} onChange={e => setPlace(e.target.value)} />
+      <select value={source} onChange={e => setSource(e.target.value)}>
+        <option value="google">Google</option>
+        <option value="etsy">Etsy</option>
+      </select>
+      <input
+        placeholder={source === 'etsy' ? 'Shop ID' : 'Merchant'}
+        value={merchant}
+        onChange={e => setMerchant(e.target.value)}
+      />
+      <input
+        placeholder={source === 'etsy' ? 'Unused' : 'Place'}
+        value={place}
+        onChange={e => setPlace(e.target.value)}
+      />
       <button onClick={fetchReviews}>Search</button>
       <ul className="reviews-list">
         {reviews.map((r, i) => (

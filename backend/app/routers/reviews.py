@@ -1,16 +1,14 @@
 import os
 import requests
-from fastapi import APIRouter, HTTPException, Depends
-from typing import List
+from fastapi import HTTPException
 from schemas import Review
-from auth import decode_token
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
-security = HTTPBearer()
 
-GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY', '')
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
+ETSY_API_KEY = os.getenv("ETSY_API_KEY", "")
 
-async def get_reviews(merchant: str, place: str):
+
+async def get_google_reviews(merchant: str, place: str):
     if not GOOGLE_API_KEY:
         raise HTTPException(status_code=500, detail="Google API key not configured")
 
@@ -22,7 +20,7 @@ async def get_reviews(merchant: str, place: str):
         "Content-Type": "application/json",
         "X-Goog-Api-Key": GOOGLE_API_KEY,
         # Ask for the resource name so we can call details next
-        "X-Goog-FieldMask": "places.name,places.displayName"
+        "X-Goog-FieldMask": "places.name,places.displayName",
     }
     search_payload = {"textQuery": query}
 
@@ -46,7 +44,7 @@ async def get_reviews(merchant: str, place: str):
     details_headers = {
         "X-Goog-Api-Key": GOOGLE_API_KEY,
         # Explicit leaf fields for reviews
-        "X-Goog-FieldMask": "reviews.text,reviews.rating,reviews.authorAttribution"
+        "X-Goog-FieldMask": "reviews.text,reviews.rating,reviews.authorAttribution",
     }
 
     d = requests.get(details_url, headers=details_headers, timeout=15)
@@ -60,7 +58,6 @@ async def get_reviews(merchant: str, place: str):
     d_json = d.json()
     reviews_data = d_json.get("reviews", []) or []
 
-    print(reviews_data)
     # Map to your schema
     out = []
     for r in reviews_data[:20]:
@@ -71,3 +68,37 @@ async def get_reviews(merchant: str, place: str):
         out.append(Review(author_name=author, rating=rating, text=text))
 
     return out
+
+
+async def get_etsy_reviews(shop_id: str):
+    if not ETSY_API_KEY:
+        raise HTTPException(status_code=500, detail="Etsy API key not configured")
+
+    url = f"https://openapi.etsy.com/v3/application/shops/{shop_id}/reviews"
+    headers = {"x-api-key": ETSY_API_KEY}
+    r = requests.get(url, headers=headers, timeout=15)
+    if r.status_code != 200:
+        try:
+            detail = r.json()
+        except Exception:
+            detail = r.text
+        raise HTTPException(status_code=502, detail=f"Etsy reviews failed: {detail}")
+
+    r_json = r.json()
+    reviews_data = r_json.get("reviews", []) or []
+
+    out = []
+    for rev in reviews_data[:20]:
+        author = rev.get("user", {}).get("login_name", "")
+        text = rev.get("review", "") or rev.get("note", "")
+        rating = rev.get("rating", 0)
+        out.append(Review(author_name=author, rating=rating, text=text))
+
+    return out
+
+
+async def get_reviews(merchant: str, place: str, source: str = "google"):
+    if source.lower() == "etsy":
+        return await get_etsy_reviews(merchant or place)
+    return await get_google_reviews(merchant, place)
+
