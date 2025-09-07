@@ -45,6 +45,14 @@ export default function LandingPage({ token }) {
           <p>One-click export to Instagram, Reels, and web.</p>
         </div>
       </section>
+      <section className="fun-section">
+        <h2>Why you'll love Havasa</h2>
+        <ul>
+          <li>🎉 Turn boring data into colorful comics</li>
+          <li>🤖 Let AI craft stories for you</li>
+          <li>🌈 Share laughs with friends and fans</li>
+        </ul>
+      </section>
     </div>
   );
 }

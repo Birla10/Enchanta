@@ -20,15 +20,23 @@ export default function Login({ onLogin }) {
   };
 
   return (
-    <div className="auth-container">
-      <h2>{isRegister ? 'REGISTER' : 'LOGIN'}</h2>
-      <input placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-      <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      <button onClick={submit}>{isRegister ? 'Register' : 'Login'}</button>
-      <button onClick={() => setIsRegister(!isRegister)}>
-        {isRegister ? 'Have an account? Login' : 'No account? Register'}
-      </button>
-      <button onClick={() => navigate('/')}>Back to Home</button>
+    <div className="auth-page">
+      <div className="auth-container">
+        <h2>{isRegister ? 'REGISTER' : 'LOGIN'}</h2>
+        <p className="auth-tagline">Welcome to Havasa – where reviews become comics! 🎉</p>
+        <input placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+        <input
+          placeholder="Password"
+          type="password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+        <button onClick={submit}>{isRegister ? 'Register' : 'Login'}</button>
+        <button onClick={() => setIsRegister(!isRegister)}>
+          {isRegister ? 'Have an account? Login' : 'No account? Register'}
+        </button>
+        <button onClick={() => navigate('/')}>Back to Home</button>
+      </div>
     </div>
   );
 }

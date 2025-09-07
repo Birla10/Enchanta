@@ -22,9 +22,16 @@ export default function MyComics({ token }) {
     };
     fetchComics();
   }, [token]);
-
-  if (loading) return <div>Fetching your Comics...</div>;
-  if (comics.length === 0) return <div>No comics generated yet.</div>;
+  if (loading) return <div className="loading-message">✨ Fetching your Comics...</div>;
+  if (comics.length === 0)
+    return (
+      <div className="my-comics-page">
+        <h2>🎨 My Comics</h2>
+        <p className="my-comics-tagline">
+          No comics generated yet. Start creating to fill this space! 🚀
+        </p>
+      </div>
+    );
 
   const handleDownload = (src, i) => {
     const link = document.createElement('a');
@@ -34,8 +41,9 @@ export default function MyComics({ token }) {
   };
 
   return (
-    <div>
-      <h2>My Comics</h2>
+    <div className="my-comics-page">
+      <h2>🎨 My Comics</h2>
+      <p className="my-comics-tagline">Click a comic to view and download it! 🎉</p>
       <div className="comic-grid">
         {comics.map((c, i) => {
           const src = c.image.startsWith('http') ? c.image : `data:image/png;base64,${c.image}`;
