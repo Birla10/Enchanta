@@ -6,6 +6,7 @@ export default function Comic({ token }) {
   const [image, setImage] = useState(null);
   const reviews = JSON.parse(localStorage.getItem('selectedReviews') || '[]');
   const merchant = localStorage.getItem('merchant') || '';
+  const characters = JSON.parse(localStorage.getItem('selectedCharacters') || '[]');
 
   useEffect(() => {
     const generate = async () => {
@@ -13,7 +14,7 @@ export default function Comic({ token }) {
         headers: { Authorization: `Bearer ${token}` },
       });
       setConversation(conv.data.conversation);
-      const img = await axios.post('/ai/comic', { conversation: conv.data.conversation, merchant }, {
+      const img = await axios.post('/ai/comic', { conversation: conv.data.conversation, merchant, characters }, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const imgData = img.data.image || img.data.image_url;

@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 
 class Review(BaseModel):
@@ -16,9 +16,22 @@ class ConversationRequest(BaseModel):
 class ComicRequest(BaseModel):
     conversation: str
     merchant: str
+    characters: List[str] = []
 
 
 class ComicOut(BaseModel):
     id: str
     image: str
     prompt: str
+
+
+class CharacterRequest(BaseModel):
+    name: str
+    description: str
+
+
+class CharacterOut(BaseModel):
+    id: str
+    name: str
+    image: str
+    description: Optional[str] = None
