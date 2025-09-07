@@ -28,6 +28,7 @@ export default function Login({ onLogin }) {
       <button onClick={() => setIsRegister(!isRegister)}>
         {isRegister ? 'Have an account? Login' : 'No account? Register'}
       </button>
+      <button onClick={() => navigate('/')}>Back to Home</button>
     </div>
   );
 }

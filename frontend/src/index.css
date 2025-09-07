@@ -42,15 +42,14 @@ input, select {
 }
 
 .navbar {
-  background-color: transparent;
+  background-color: #2674f1; /* match new palette */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3px 40px;
-  margin: 10px 10px 0px 10px;
-  border: 1.2px solid white;
-  border-radius: 50px;
-  box-shadow: 0 2px 8px rgba(27, 26, 26, 0.5);
+  padding: 10px 40px;
+  margin: 10px 10px 0 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(27, 26, 26, 0.3);
 }
 
 .logo {
@@ -71,19 +70,19 @@ input, select {
 
 .nav-links a,
 .nav-links button {
-  background-color: #FE4E8F;
-  color: #fff;
+  background-color: #fff;
+  color: #2674f1;
   padding: 12px 24px;
-  border: none;
+  border: 2px solid #fff;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   text-decoration: none;
 }
 
 .nav-links a:hover,
 .nav-links button:hover {
-  color: #ffd54f;
+  background-color: #f0f0f0;
 }
 
 .auth-container {
