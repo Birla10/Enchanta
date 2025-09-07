@@ -23,15 +23,24 @@ export default function LandingPage({ token }) {
         </div>
       </section>
       <section className="features">
-        <div className="feature">
+        <div className="feature-card">
+          <div className="feature-icon" role="img" aria-label="Connect">
+            🔗
+          </div>
           <h3>Connect</h3>
           <p>Plug in your reviews & sales sources (Google, Yelp, Shopify).</p>
         </div>
-        <div className="feature">
+        <div className="feature-card">
+          <div className="feature-icon" role="img" aria-label="Generate">
+            ✨
+          </div>
           <h3>Generate</h3>
           <p>Pick a vibe; Havasa creates mini cartoons, carousels, and scripts.</p>
         </div>
-        <div className="feature">
+        <div className="feature-card">
+          <div className="feature-icon" role="img" aria-label="Publish">
+            🚀
+          </div>
           <h3>Publish</h3>
           <p>One-click export to Instagram, Reels, and web.</p>
         </div>
