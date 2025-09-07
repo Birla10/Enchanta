@@ -56,7 +56,7 @@ async def comic(data: ComicRequest, user: dict = Depends(get_current_user)):
         model="gpt-image-1", 
         prompt=prompt,
         n=1,
-        size="1080x1350",
+        size="1024x1536",
         quality="high"
     )
 
