@@ -135,6 +135,53 @@
   color: #6D7680;
 }
 
+/* ----- Placeholder & generating animations ----- */
+.placeholder,
+.generating-animation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+}
+
+.placeholder-animation {
+  font-size: 18px;
+  color: #6D7680;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 5px solid #2BC4A4;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+  margin-bottom: 12px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.generating-animation p {
+  margin: 0;
+  color: #2A2D34;
+}
+
 /* ----- Small screens: stack vertically ----- */
 @media (max-width: 980px) {
   .reviews-page {
