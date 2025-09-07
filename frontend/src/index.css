@@ -41,7 +41,7 @@ input, select {
 
 .container {
   max-width: 960px;
-  margin: 0 auto;
+  margin: 20px;
   padding: 20px;
 }
 
@@ -52,7 +52,7 @@ input, select {
   align-items: center;
   padding: 10px 40px;
   margin: 10px 10px 0 10px;
-  border-radius: 8px;
+  border-radius: 35px;
   box-shadow: 0 2px 8px rgba(27, 26, 26, 0.3);
 }
 
@@ -74,19 +74,20 @@ input, select {
 
 .nav-links a,
 .nav-links button {
-  background-color: #fff;
-  color: #36454F;
+  color: white;
   padding: 12px 24px;
   border: 2px solid #36454F;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   text-decoration: none;
+  font-size: 17px;
 }
 
 .nav-links a:hover,
 .nav-links button:hover {
   background-color: #f0f0f0;
+  color: #36454F;
+  border-radius: 25px;
 }
 
 .auth-container {
