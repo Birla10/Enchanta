@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import '../css/reviews.css';
+import Comic from './Comic';
 
 export default function Reviews({ token }) {
   const [source, setSource] = useState('google');
@@ -10,8 +10,6 @@ export default function Reviews({ token }) {
   const [reviews, setReviews] = useState([]);
   const [selected, setSelected] = useState([]);
   const [showComic, setShowComic] = useState(false);
-  const [generating, setGenerating] = useState(false);
-  const navigate = useNavigate();
 
   const fetchReviews = async () => {
     const res = await axios.get(
@@ -28,18 +26,10 @@ export default function Reviews({ token }) {
     );
   };
 
-  // If you still want to navigate to /comic, keep goNext().
-  // If you want to render the comic on the right in place of reviews,
-  // set showComic = true and render there.
-  const goNext = async () => {
+  const goNext = () => {
     localStorage.setItem('selectedReviews', JSON.stringify(selected.slice(0, 3)));
     localStorage.setItem('merchant', merchant);
-    setGenerating(true);
-    setShowComic(false);
-    // simulate async comic generation
-    await new Promise((res) => setTimeout(res, 2000));
-    setGenerating(false);
-    setShowComic(true);     // <- show comic on the right instead
+    setShowComic(true);
   };
 
   return (
@@ -77,20 +67,12 @@ export default function Reviews({ token }) {
         <button className="btn-primary" onClick={fetchReviews}>Search</button>
       </aside>
 
-      {/* RIGHT: placeholder, reviews list, generating animation or Comic */}
+      {/* RIGHT: reviews list or generated comic */}
       <section className="right-pane">
-        {generating ? (
-          <div className="generating-animation">
-            <div className="spinner" />
-            <p>Generating comic...</p>
-          </div>
-        ) : showComic ? (
+        {showComic ? (
           <div className="comic-wrap">
             <h3 className="pane-title">Generated Comic</h3>
-            {/* Replace with your real comic image or component */}
-            <div className="comic-placeholder">
-              Your comic appears here (replace with actual image/component).
-            </div>
+            <Comic token={token} />
           </div>
         ) : reviews.length > 0 ? (
           <>
