@@ -32,7 +32,7 @@
 }
 
 .start-btn {
-  background-color: #2674f1;
+  background-color: #36454F;
   color: #fff;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -43,7 +43,8 @@
 
 .examples-btn {
   background-color: #fff;
-  border: 2px solid #222;
+  border: 2px solid #36454F;
+  color: #36454F;
   padding: 0.75rem 1.5rem;
   border-radius: 9999px;
   font-size: 1rem;
