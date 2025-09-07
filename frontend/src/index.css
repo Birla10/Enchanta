@@ -14,8 +14,12 @@ body {
   margin: 0;
 }
 
+a {
+  color: #36454F;
+}
+
 button {
-  background-color: #FE4E8F;
+  background-color: #36454F;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -42,7 +46,7 @@ input, select {
 }
 
 .navbar {
-  background-color: #2674f1; /* match new palette */
+  background-color: #36454F;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,9 +75,9 @@ input, select {
 .nav-links a,
 .nav-links button {
   background-color: #fff;
-  color: #2674f1;
+  color: #36454F;
   padding: 12px 24px;
-  border: 2px solid #fff;
+  border: 2px solid #36454F;
   border-radius: 8px;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
