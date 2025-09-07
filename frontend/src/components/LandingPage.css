@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* reduce top padding to remove gap under navbar */
   padding: 2rem 1rem;
   text-align: center;
 }
