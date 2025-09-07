@@ -51,7 +51,7 @@ async def create_character(data: CharacterRequest, user: dict = Depends(get_curr
         raise HTTPException(status_code=400, detail="Character limit reached")
 
     prompt = (
-        f"Create a high-quality, 3D cartoon character named {data.name}. "
+        f"Create a high-quality, transparent 3D cartoon character named {data.name}. "
         f"{data.description}. Make it consistent for future comics."
     )
     image = openai.images.generate(
