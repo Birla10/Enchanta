@@ -9,7 +9,8 @@ export default function Reviews({ token }) {
   const [place, setPlace] = useState('');
   const [reviews, setReviews] = useState([]);
   const [selected, setSelected] = useState([]);
-  const [showComic, setShowComic] = useState(false);  
+  const [showComic, setShowComic] = useState(false);
+  const [generating, setGenerating] = useState(false);
   const navigate = useNavigate();
 
   const fetchReviews = async () => {
@@ -30,10 +31,14 @@ export default function Reviews({ token }) {
   // If you still want to navigate to /comic, keep goNext().
   // If you want to render the comic on the right in place of reviews,
   // set showComic = true and render there.
-  const goNext = () => {
+  const goNext = async () => {
     localStorage.setItem('selectedReviews', JSON.stringify(selected.slice(0, 3)));
     localStorage.setItem('merchant', merchant);
-    // navigate('/comic'); // <- old behavior
+    setGenerating(true);
+    setShowComic(false);
+    // simulate async comic generation
+    await new Promise((res) => setTimeout(res, 2000));
+    setGenerating(false);
     setShowComic(true);     // <- show comic on the right instead
   };
 
@@ -72,9 +77,22 @@ export default function Reviews({ token }) {
         <button className="btn-primary" onClick={fetchReviews}>Search</button>
       </aside>
 
-      {/* RIGHT: Reviews list OR Comic */}
+      {/* RIGHT: placeholder, reviews list, generating animation or Comic */}
       <section className="right-pane">
-        {!showComic ? (
+        {generating ? (
+          <div className="generating-animation">
+            <div className="spinner" />
+            <p>Generating comic...</p>
+          </div>
+        ) : showComic ? (
+          <div className="comic-wrap">
+            <h3 className="pane-title">Generated Comic</h3>
+            {/* Replace with your real comic image or component */}
+            <div className="comic-placeholder">
+              Your comic appears here (replace with actual image/component).
+            </div>
+          </div>
+        ) : reviews.length > 0 ? (
           <>
             <h3 className="pane-title">Select Reviews</h3>
             <ul className="reviews-list">
@@ -98,12 +116,8 @@ export default function Reviews({ token }) {
             </div>
           </>
         ) : (
-          <div className="comic-wrap">
-            <h3 className="pane-title">Generated Comic</h3>
-            {/* Replace with your real comic image or component */}
-            <div className="comic-placeholder">
-              Your comic appears here (replace with actual image/component).
-            </div>
+          <div className="placeholder">
+            <div className="placeholder-animation">Your reviews will appear here</div>
           </div>
         )}
       </section>
