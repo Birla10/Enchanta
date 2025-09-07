@@ -99,7 +99,21 @@ input, select {
   margin: 40px auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
   color: #1f2937;
+}
+
+.auth-page {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.auth-tagline {
+  margin-bottom: 1rem;
+  color: #fff;
 }
 
 .reviews-list {
@@ -179,6 +193,19 @@ input, select {
   background: rgba(255, 255, 255, 0.9);
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.my-comics-page {
+  text-align: center;
+}
+
+.my-comics-tagline {
+  margin-bottom: 1rem;
+}
+
+.loading-message {
+  text-align: center;
+  margin-top: 40px;
 }
 
 @media (max-width: 600px) {

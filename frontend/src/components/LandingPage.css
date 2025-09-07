@@ -95,3 +95,23 @@
     align-items: center;
   }
 }
+
+/* Extra fun section */
+.fun-section {
+  margin-top: 3rem;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  max-width: 800px;
+}
+
+.fun-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fun-section li {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
