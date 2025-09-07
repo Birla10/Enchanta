@@ -9,6 +9,7 @@ export default function NavBar({ token, logout }) {
         {token ? (
           <>
             <Link to="/reviews">Home</Link>
+            <Link to="/characters">Characters</Link>
             <Link to="/my-comics">My Comics</Link>
             <Link onClick={logout}>Logout</Link>
           </>

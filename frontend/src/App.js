@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Reviews from './components/Reviews';
 import Comic from './components/Comic';
 import MyComics from './components/MyComics';
+import Characters from './components/Characters';
 import NavBar from './components/NavBar';
 import LandingPage from './components/LandingPage';
 
@@ -57,6 +58,10 @@ function App() {
           <Route
             path="/my-comics"
             element={token ? <MyComics token={token} /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/characters"
+            element={token ? <Characters token={token} /> : <Navigate to="/login" />}
           />
         </Routes>
       </div>

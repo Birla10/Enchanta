@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/reviews.css';
 import Comic from './Comic';
@@ -10,6 +10,8 @@ export default function Reviews({ token }) {
   const [reviews, setReviews] = useState([]);
   const [selected, setSelected] = useState([]);
   const [showComic, setShowComic] = useState(false);
+  const [characters, setCharacters] = useState([]);
+  const [charSelected, setCharSelected] = useState([]);
 
   const fetchReviews = async () => {
     const res = await axios.get(
@@ -20,15 +22,37 @@ export default function Reviews({ token }) {
     setShowComic(false);
   };
 
+  const fetchChars = async () => {
+    const res = await axios.get('/ai/characters', {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    setCharacters(res.data || []);
+  };
+
+  useEffect(() => {
+    fetchChars();
+  }, [token]);
+
   const toggle = (text) => {
     setSelected((prev) =>
       prev.includes(text) ? prev.filter((t) => t !== text) : [...prev, text]
     );
   };
 
+  const toggleChar = (id) => {
+    setCharSelected((prev) =>
+      prev.includes(id)
+        ? prev.filter((c) => c !== id)
+        : prev.length < 3
+        ? [...prev, id]
+        : prev
+    );
+  };
+
   const goNext = () => {
     localStorage.setItem('selectedReviews', JSON.stringify(selected.slice(0, 3)));
     localStorage.setItem('merchant', merchant);
+    localStorage.setItem('selectedCharacters', JSON.stringify(charSelected.slice(0, 3)));
     setShowComic(true);
   };
 
@@ -88,6 +112,31 @@ export default function Reviews({ token }) {
                 </li>
               ))}
             </ul>
+
+            {characters.length > 0 && (
+              <>
+                <h3 className="pane-title">Select Characters (max 3)</h3>
+                <div className="characters-select">
+                  {characters.map((c) => {
+                    const src = c.image.startsWith('http')
+                      ? c.image
+                      : `data:image/png;base64,${c.image}`;
+                    return (
+                      <div
+                        key={c.id}
+                        onClick={() => toggleChar(c.id)}
+                        className={
+                          charSelected.includes(c.id) ? 'char selected' : 'char'
+                        }
+                      >
+                        <img src={src} alt={c.name} />
+                        <p>{c.name}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            )}
 
             <div className="actions">
               {selected.length > 0 && (
