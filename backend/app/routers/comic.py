@@ -23,7 +23,8 @@ async def conversation(data: ConversationRequest, user: dict = Depends(get_curre
     if not openai.api_key:
         raise HTTPException(status_code=500, detail="OpenAI API key not configured")
     prompt = (
-        "These are 2 reviews from 2 different people. Mix both reviews and convert this into a cute conversation with proper start and ending. Make the content more fun."
+        f"These are 2 reviews from 2 different people about {data.merchant}. "
+        "Mix both reviews and convert this into a cute conversation with proper start and ending. Make the content more fun."
         + "\n".join(data.reviews)
     )
     resp = openai.chat.completions.create(
@@ -42,11 +43,12 @@ async def comic(data: ComicRequest, user: dict = Depends(get_current_user)):
         raise HTTPException(status_code=500, detail="OpenAI API key not configured")
 
     prompt = (
-        f"Create a high-quality, 3D cartoon comic strip of this conversation. "
+        f"Create a high-quality, 3D cartoon comic strip for the merchant {data.merchant}. "
         f"Make it visually engaging with appropriate backgrounds and foregrounds. "
         f"Focus on expressive characters, natural poses"
         f"Keep text minimal (speech bubbles only) and legible. "
         f"Create a complete image without stripping any side and maintaining consistency in characters. "
+        f"Ensure the merchant name '{data.merchant}' appears clearly in the comic. "
         f"Conversation: {data.conversation}"
     )
 
@@ -66,6 +68,7 @@ async def comic(data: ComicRequest, user: dict = Depends(get_current_user)):
         "user_id": user.get("sub"),
         "image": img_data,
         "prompt": prompt,
+        "merchant": data.merchant,
         "created_at": datetime.utcnow(),
     })
 

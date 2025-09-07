@@ -26,6 +26,7 @@ export default function Reviews({ token }) {
 
   const goNext = () => {
     localStorage.setItem('selectedReviews', JSON.stringify(selected.slice(0, 3)));
+    localStorage.setItem('merchant', merchant);
     navigate('/comic');
   };
 
