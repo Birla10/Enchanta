@@ -25,7 +25,7 @@ function App() {
       if (timer) clearTimeout(timer);
       timer = setTimeout(() => {
         logout();
-      }, 5 * 60 * 1000);
+      }, 30 * 60 * 1000);
     };
     const events = ['mousemove', 'mousedown', 'keypress', 'touchstart', 'scroll'];
     events.forEach(e => window.addEventListener(e, reset));
