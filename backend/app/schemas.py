@@ -10,10 +10,12 @@ class Review(BaseModel):
 
 class ConversationRequest(BaseModel):
     reviews: List[str]
+    merchant: str
 
 
 class ComicRequest(BaseModel):
     conversation: str
+    merchant: str
 
 
 class ComicOut(BaseModel):
