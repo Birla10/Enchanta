@@ -39,12 +39,6 @@ input, select {
   border-radius: 4px;
 }
 
-.container {
-  max-width: 960px;
-  margin: 20px;
-  padding: 20px;
-}
-
 .navbar {
   background-color: #36454F;
   display: flex;

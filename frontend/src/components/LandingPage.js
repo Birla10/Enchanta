@@ -14,7 +14,7 @@ export default function LandingPage({ token }) {
       <section className="hero">
         <h1>Turn customer reviews & sales data into scroll-stopping visuals</h1>
         <p>
-          Havasa transforms text and numbers into on-brand content, carousels, and
+          Havasa transforms text and numbers into on-brand content, <br /> carousels, and
           stories that boost clicks, saves, and shares.
         </p>
         <div className="cta-buttons">
@@ -24,23 +24,14 @@ export default function LandingPage({ token }) {
       </section>
       <section className="features">
         <div className="feature-card">
-          <div className="feature-icon" role="img" aria-label="Connect">
-            🔗
-          </div>
           <h3>Connect</h3>
           <p>Plug in your reviews & sales sources (Google, Yelp, Shopify).</p>
         </div>
         <div className="feature-card">
-          <div className="feature-icon" role="img" aria-label="Generate">
-            ✨
-          </div>
           <h3>Generate</h3>
           <p>Pick a vibe; Havasa creates mini cartoons, carousels, and scripts.</p>
         </div>
         <div className="feature-card">
-          <div className="feature-icon" role="img" aria-label="Publish">
-            🚀
-          </div>
           <h3>Publish</h3>
           <p>One-click export to Instagram, Reels, and web.</p>
         </div>
