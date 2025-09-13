@@ -1,11 +1,11 @@
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f3e8ff; /* fallback color while image loads */
+  background-color: #fff8e6; /* soft cream base */
   color: #1f2937;
 
-  /* background image setup */
-  background-image: url('../public/assets/background.png'); /* ✅ don't use ../public */
-  background-size: cover;      /* cover entire screen */
+  /* cream curved background image */
+  background-image: url('/assets/bac.png');
+  background-size: cover; /* cover entire screen */
   background-position: center; /* keep centered */
   background-repeat: no-repeat; /* no tiling */
   background-attachment: fixed; /* makes it stay fixed on scroll */
