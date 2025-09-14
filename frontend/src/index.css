@@ -88,7 +88,7 @@ input, select {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 400px;
-  margin: 40px auto;
+  margin: 40px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -106,6 +106,55 @@ input, select {
 .auth-tagline {
   margin-bottom: 1rem;
   color: #fff;
+}
+
+/* Auth page layout */
+.auth-wrapper {
+  display: flex;
+  gap: 2rem;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.auth-fun {
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #1f2937;
+  text-align: left;
+}
+
+.auth-fun ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.auth-fun li {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.auth-fun img {
+  max-width: 100%;
+  height: auto;
+  margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  .auth-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .auth-fun {
+    max-width: 400px;
+    text-align: center;
+  }
 }
 
 .reviews-list {
