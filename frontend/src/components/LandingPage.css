@@ -14,43 +14,52 @@
 }
 
 .hero h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1.5rem, 3vw, 3.5rem);
   font-weight: 700;
   line-height: 1.2;
-  margin: 3rem;
+  margin: 2rem;
 }
 
 .hero p {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  margin-bottom: 1rem;
-  line-height: 1.4;
+  font-size: clamp(0.9rem, 1.5vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 2rem;
 }
 
 .cta-buttons {
-  display: flex;
-  justify-content: center;
   gap: 1rem;
-  margin-top: 4rem;
+  margin-top: 1rem;
 }
 
 .start-btn {
   background-color: #36454F;
   color: #fff;
   border: none;
-  padding: 1rem 2rem;
+  padding: 0.7rem 1rem;
   border-radius: 14px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
 }
 
-.examples-btn {
-  background-color: #fff;
-  border: 2px solid #36454F;
+.start-btn:hover {
+  background-color: #fff8ec;
   color: #36454F;
-  padding: 1rem 2rem;
+}
+
+.examples-btn {
+  background-color: #36454F;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1rem;
   border-radius: 14px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
+}
+
+.examples-btn:hover {
+  background-color: #fff8ec;
+  color: #36454F;
 }
 
 /* Feature section */
@@ -64,26 +73,36 @@
 }
 
 .feature-card {
-  background-color: #fff8e6;
+  background-color:#fff8ec;
   padding: 1.5rem;
   border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 300px;
   max-width: 300px;
+  height: 300px;
   text-align: center;
-}
-
-.feature-icon {
-  font-size: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .feature-card h3 {
   margin-top: -0.5rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .feature-card p {
   font-size: 1rem;
   line-height: 1.4;
+}
+
+.feature-card img {      
+  object-fit: contain;
+  margin-top: auto; 
+
+}
+
+.feature-card img:hover {
+  filter: drop-shadow(0 12px 12px rgba(0, 0, 0, 0.2));
+  transform: translateY(5px);
+  transition: 0.4s ease;
 }
 
 @media (max-width: 768px) {
@@ -96,22 +115,59 @@
   }
 }
 
-/* Extra fun section */
 .fun-section {
-  margin-top: 3rem;
-  background: rgba(255, 255, 255, 0.4);
-  padding: 1.5rem;
-  border-radius: 1rem;
-  max-width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  background-color: #fff8ec; /* or whatever your bg is */
+  flex-wrap: wrap; /* allows stacking on smaller screens */
 }
 
-.fun-section ul {
+.fun-content {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+}
+
+.fun-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  margin-left: 8rem;
+}
+
+.fun-content ul{
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 120px;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin-left: 8rem;
 }
 
 .fun-section li {
   margin: 0.5rem 0;
   font-size: 1.1rem;
+}
+
+.fun-image {
+  flex: 1;
+  text-align: center;
+  min-width: 300px;
+}
+
+.fun-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .fun-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .fun-content {
+    padding-bottom: 2rem;
+  }
 }

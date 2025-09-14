@@ -1,16 +1,14 @@
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f3e8ff; /* fallback color while image loads */
+  background-color:#fff8ec; 
   color: #1f2937;
 
   /* background image setup */
-  background-image: url('../public/assets/background.png'); /* ✅ don't use ../public */
+  background-image: url('../public/assets/creambg.PNG'); 
   background-size: cover;      /* cover entire screen */
   background-position: center; /* keep centered */
   background-repeat: no-repeat; /* no tiling */
-  background-attachment: fixed; /* makes it stay fixed on scroll */
-
-  min-height: 100vh; /* make sure it always fills the viewport */
+  max-height: 110vh; /* make sure it always fills the viewport */
   margin: 0;
 }
 
